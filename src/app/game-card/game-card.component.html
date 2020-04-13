@@ -14,27 +14,29 @@
   </div>
 </div>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
-  <mat-card class="game-card" *ngFor = "let game of gamesObj | async" fxFlex="calc(25%-25px)" fxFlex.sm="calc(50%-25px)">
-    <mat-card-header>
-      <div class="row">
-        <div class="col s4">
-          <img mat-card-image src="../../assets/img/pic2.png" class="game-cover-pic" alt="Games Cover Pic">
-        </div>
-        <div class="col s8">
-          <mat-card-title style="color: #ce93d8">{{game.title}}</mat-card-title>
-          <span *ngIf="game.editors_choice == 'Y'">
-            <mat-card-subtitle><img src="../../assets/img/star.svg" style="height: 15px;" alt="Star icon for Editor's choice"> Editors choice</mat-card-subtitle>
-          </span>
-          <mat-card-subtitle>{{ game.platform }}</mat-card-subtitle>
-        </div>
-      </div>   
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-footer class="game-card-footer">
-      <span class="left">Genre: {{game.genre}}</span>
-      <span class="right">Rating: {{game.score}}</span>
-    </mat-card-footer>
-  </mat-card>
+    <mat-card class="game-card" *ngFor = "let game of gamesObj | async" fxFlex="calc(25%-25px)" fxFlex.sm="calc(50%-25px)">
+      <ng-container *ngIf = "game != undefined">
+        <mat-card-header>
+          <div class="row">
+            <div class="col s4">
+              <img mat-card-image src="../../assets/img/pic2.png" class="game-cover-pic" alt="Games Cover Pic">
+            </div>
+            <div class="col s8">
+              <mat-card-title style="color: #ce93d8">{{game.title}}</mat-card-title>
+              <span *ngIf="game.editors_choice == 'Y'">
+                <mat-card-subtitle><img src="../../assets/img/star.svg" style="height: 15px;" alt="Star icon for Editor's choice"> Editors choice</mat-card-subtitle>
+              </span>
+              <mat-card-subtitle>{{ game.platform }}</mat-card-subtitle>
+            </div>
+          </div>   
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-footer class="game-card-footer">
+          <span class="left">Genre: {{game.genre}}</span>
+          <span class="right">Rating: {{game.score}}</span>
+        </mat-card-footer>
+      </ng-container>
+    </mat-card>
 </div>
 
 <mat-paginator #paginator [length]="pageLength" [pageSize]="6" [showFirstLastButtons]="true">

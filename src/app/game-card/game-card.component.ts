@@ -19,7 +19,8 @@ export interface GameCard {
 })
 export class GameCardComponent implements OnInit, OnDestroy {
 
-  requestObj: [];
+  //requestObj: [];
+  requestObj: GameCard[];
   gamesObj: Observable<any>;
 
   obs: Observable<any>;
@@ -37,6 +38,7 @@ export class GameCardComponent implements OnInit, OnDestroy {
     this.data.getGames().subscribe(
       games =>{
         this.requestObj = games;
+        console.log("this.requestObj: ", this.requestObj);
         this.pageLength = games.length;
         this.makePaginator();
       } 
@@ -57,8 +59,8 @@ export class GameCardComponent implements OnInit, OnDestroy {
 
   sortAscending (){
     this.requestObj.sort((a, b) => {
-      const scoreA = (a as GameCard).score;
-      const scoreB = (b as GameCard).score;
+      const scoreA = a.score;
+      const scoreB = b.score;
       return scoreA - scoreB;
     });
     this.isDescending = true; //now that sorted in ascending order, show descending order icon
