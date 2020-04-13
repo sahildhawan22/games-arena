@@ -19,14 +19,15 @@ export interface GameCard {
 })
 export class GameCardComponent implements OnInit, OnDestroy {
 
-  //gamesObj: GameCard;
-  requestObj: any;
+  requestObj: [];
   gamesObj: Observable<any>;
 
   obs: Observable<any>;
   pageLength: number;
   pageSize: 6;
   dataSource: MatTableDataSource<GameCard>;
+
+  isDescending = false;  //Initially show Ascending icon
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -37,17 +38,42 @@ export class GameCardComponent implements OnInit, OnDestroy {
       games =>{
         this.requestObj = games;
         this.pageLength = games.length;
-        this.dataSource = new MatTableDataSource<GameCard>(this.requestObj);
-        this.dataSource.paginator = this.paginator;
-        this.gamesObj = this.dataSource.connect();
+        this.makePaginator();
       } 
     );   
+  }
+
+  makePaginator(){
+    this.dataSource = new MatTableDataSource<GameCard>(this.requestObj);
+    this.dataSource.paginator = this.paginator;
+    this.gamesObj = this.dataSource.connect();
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase match
     this.dataSource.filter = filterValue;
+  }
+
+  sortAscending (){
+    this.requestObj.sort((a, b) => {
+      const scoreA = (a as GameCard).score;
+      const scoreB = (b as GameCard).score;
+      return scoreA - scoreB;
+    });
+    this.isDescending = true; //now that sorted in ascending order, show descending order icon
+    this.makePaginator();
+  }
+
+  sortDescending() {
+    this.requestObj.sort((a, b) => {
+      const scoreA = (a as GameCard).score;
+      const scoreB = (b as GameCard).score;
+      return scoreB - scoreA;
+    });
+    
+    this.isDescending = false; //sorted in descending order, show ascending order icon again
+    this.makePaginator();
   }
 
   ngOnDestroy() {
