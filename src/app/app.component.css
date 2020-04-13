@@ -11,3 +11,5 @@ nav, footer {
   color: wheat;
   text-decoration: underline;
 }
+
+.clear { clear: both; height: 60px; }

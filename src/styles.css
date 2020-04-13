@@ -11,13 +11,21 @@ body {
   flex-direction: column;
 }
 
+#container {
+  min-height:100%;
+  position:relative;
+}
+
 main {
   flex: 1 0 auto;
 }
 
 .page-footer{
-    position: fixed;
+   position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
+   height: 60px;
 }
+
+.clear { clear: both; height: 60px; }

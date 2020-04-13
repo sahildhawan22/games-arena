@@ -1,5 +1,17 @@
-<div>
-  <input style="color: white;" (keyup)="applyFilter($event.target.value)" placeholder="Search Games">
+<div class="row">
+  <div class="col s11">
+    <input style="color: white;" (keyup)="applyFilter($event.target.value)" placeholder="Search Games">
+  </div>
+  <div class="col s1">
+    <ng-container *ngIf="isDescending == false">
+      <i class="fas fa-sort-amount-up"  matTooltip="Sort score: lowest to highest" matTooltipPosition="above"
+      (click)="sortAscending()"></i>
+    </ng-container>
+    <ng-container *ngIf="isDescending == true">
+      <i class="fas fa-sort-amount-down"  matTooltip="Sort score: highest to lowest" matTooltipPosition="above"
+      (click)="sortDescending()"></i>
+    </ng-container>
+  </div>
 </div>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
   <mat-card class="game-card" *ngFor = "let game of gamesObj | async" fxFlex="calc(25%-25px)" fxFlex.sm="calc(50%-25px)">
