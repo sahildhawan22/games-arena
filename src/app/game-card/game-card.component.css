@@ -1,0 +1,11 @@
+.game-cover-pic {
+  /* background-size: cover; */
+}
+
+.game-card{
+  margin: 20px;
+}
+
+.game-card-footer {
+  padding: 0 2%
+}

@@ -1,0 +1,13 @@
+nav, footer {
+  background: #9c27b0
+}
+
+.footer-text{
+  font-size: medium;
+  text-align: center;
+}
+
+.footer-link {
+  color: wheat;
+  text-decoration: underline;
+}
