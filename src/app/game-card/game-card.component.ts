@@ -19,7 +19,6 @@ export interface GameCard {
 })
 export class GameCardComponent implements OnInit, OnDestroy {
 
-  //requestObj: [];
   requestObj: GameCard[];
   gamesObj: Observable<any>;
 
@@ -38,8 +37,10 @@ export class GameCardComponent implements OnInit, OnDestroy {
     this.data.getGames().subscribe(
       games =>{
         this.requestObj = games;
+        console.log("this.requestObj before filter: ", this.requestObj);
+        this.requestObj = this.requestObj.filter(o => o != undefined);
         console.log("this.requestObj: ", this.requestObj);
-        this.pageLength = games.length;
+        this.pageLength = this.requestObj.length;
         this.makePaginator();
       } 
     );   
@@ -69,8 +70,8 @@ export class GameCardComponent implements OnInit, OnDestroy {
 
   sortDescending() {
     this.requestObj.sort((a, b) => {
-      const scoreA = (a as GameCard).score;
-      const scoreB = (b as GameCard).score;
+      const scoreA = a.score;
+      const scoreB = b.score;
       return scoreB - scoreA;
     });
     

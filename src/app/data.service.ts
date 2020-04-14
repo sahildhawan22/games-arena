@@ -11,20 +11,15 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
   
-  /* getGames() : any {
-    return this.http.get("http://starlord.hackerearth.com/gamesarena");
-  } */
-
-  
   hasProp(obj: Object, prop) {
     return Object.prototype.hasOwnProperty.call(obj, prop);
   }
 
   getGames() : Observable<GameCard[]> {
     return this.http.get<GameCard[]>("http://starlord.hackerearth.com/gamesarena").pipe(
-      filter((o) =>(this.hasProp(o, 'title') && this.hasProp(o, 'platform')
-      && this.hasProp(o, 'score') && this.hasProp(o, 'genre') && this.hasProp(o, 'editors_choice')).
       map(o => o.map((res): GameCard => {
+        if(this.hasProp(res, 'title') && this.hasProp(res, 'platform')
+        && this.hasProp(res, 'score') && this.hasProp(res, 'genre') && this.hasProp(res, 'editors_choice'))
             return {
               title: res.title,
               platform: res.platform,
@@ -33,7 +28,7 @@ export class DataService {
               editors_choice: res.editors_choice
             }           
           })
-      )));
+      ));
   }
 }
 
