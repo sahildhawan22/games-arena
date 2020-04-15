@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col s11">
+  <div class="col s10">
     <input style="color: white;" (keyup)="applyFilter($event.target.value)" placeholder="Search Games">
   </div>
   <div class="col s1">
@@ -11,6 +11,9 @@
       <i class="fas fa-sort-amount-down"  matTooltip="Sort score: highest to lowest" matTooltipPosition="above"
       (click)="sortDescending()"></i>
     </ng-container>
+  </div>
+  <div class="col s1">
+    <i class="fas fa-filter" matTooltip="Filter by platform type" matTooltipPosition="above"></i>
   </div>
 </div>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
