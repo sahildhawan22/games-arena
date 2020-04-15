@@ -10,13 +10,16 @@ import { map, filter } from 'rxjs/operators';
 export class DataService {
 
   constructor(private http: HttpClient) { }
+
+  //api = "http://starlord.hackerearth.com/gamesarena";
+  api = "../../assets/mydata.json";
   
   hasProp(obj: Object, prop) {
     return Object.prototype.hasOwnProperty.call(obj, prop);
   }
 
   getGames() : Observable<GameCard[]> {
-    return this.http.get<GameCard[]>("http://starlord.hackerearth.com/gamesarena").pipe(
+    return this.http.get<GameCard[]>(this.api).pipe(
       map(o => o.map((res): GameCard => {
         if(this.hasProp(res, 'title') && this.hasProp(res, 'platform')
         && this.hasProp(res, 'score') && this.hasProp(res, 'genre') && this.hasProp(res, 'editors_choice'))
