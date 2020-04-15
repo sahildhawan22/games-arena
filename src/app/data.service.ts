@@ -11,8 +11,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  //api = "http://starlord.hackerearth.com/gamesarena";
-  api = "../../assets/mydata.json";
+  api = "https://cors-anywhere.herokuapp.com/http://starlord.hackerearth.com/gamesarena";
+  //api = "../../assets/mydata.json";
   
   hasProp(obj: Object, prop) {
     return Object.prototype.hasOwnProperty.call(obj, prop);
