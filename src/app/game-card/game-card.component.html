@@ -19,12 +19,12 @@
         <mat-card-header>
           <div class="row">
             <div class="col s4">
-              <img mat-card-image src="../../assets/img/pic2.png" class="game-cover-pic" alt="Games Cover Pic">
+              <img mat-card-image src="assets/img/pic2.png" class="game-cover-pic" alt="Games Cover Pic">
             </div>
             <div class="col s8">
               <mat-card-title style="color: #ce93d8">{{game.title}}</mat-card-title>
               <span *ngIf="game.editors_choice == 'Y'">
-                <mat-card-subtitle><img src="../../assets/img/star.svg" style="height: 15px;" alt="Star icon for Editor's choice"> Editors choice</mat-card-subtitle>
+                <mat-card-subtitle><img src="assets/img/star.svg" style="height: 15px;" alt="Star icon for Editor's choice"> Editors choice</mat-card-subtitle>
               </span>
               <mat-card-subtitle>{{ game.platform }}</mat-card-subtitle>
             </div>
